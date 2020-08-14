@@ -18,7 +18,7 @@ config({ path: resolve(__dirname, "../.env") });
 import express from 'express';
 import routes from './routes';
 import cors from 'cors';
-import converteDataParaFullData from "./utils/converteDataParaFullData";
+import converteAnoParaFull from "./utils/converteAnoParaFull";
 
 const db = admin.firestore();
 const app = express();
@@ -29,9 +29,9 @@ app.use(routes);
 
 // Configuração do Cron
 const CronJob = require('cron').CronJob;
-const job = new CronJob('2 * * * * *', () => {
+const job = new CronJob('40 * * * * *', () => {
   scrape().then((value: IDadosCovid) => {
-    value.data = converteDataParaFullData(value.data);
+    value.data = converteAnoParaFull(value.data);
     dadosCovidController.create(value);
   });
 }, null, true, 'America/Sao_Paulo');
@@ -77,5 +77,5 @@ let scrape = async () => {
 };
 
 app.listen(process.env.APP_PORT || 3333, ()=>{
-  console.log("Server on http://localhost:3333");
+  console.log("Server on");
 });

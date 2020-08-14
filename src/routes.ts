@@ -9,8 +9,8 @@ routes.get('/covid19', dadosCovidController.index);
 
 routes.get('/covid19/:dia/:mes/:ano', dadosCovidController.getByDate);
 
-// routes.post('/covid19', (request, response, next) => {
-//   response.send({ ok: request.body });
-// });
+routes.get('/teste', (request, response, next) => {
+  response.send([{ ok: 'ok' }, {t: "ok"}]);
+});
 
 export default routes;
