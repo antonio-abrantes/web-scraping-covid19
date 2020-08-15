@@ -1,3 +1,9 @@
+// Configuração do dotenv
+import { resolve } from "path";
+import dotenv from "dotenv";
+dotenv.config();
+// config({ path: resolve(__dirname, "../.env") });
+
 // Firebase
 import * as  admin from "firebase-admin";
 
@@ -9,11 +15,6 @@ admin.initializeApp({
 
 import { IDadosCovid } from './interfaces/exportInterfaces';
 import { dadosCovidController } from './controllers/exportControllers';
-
-// Configuração do dotenv
-import { resolve } from "path";
-import { config } from "dotenv";
-config({ path: resolve(__dirname, "../.env") });
 
 import express from 'express';
 import routes from './routes';
